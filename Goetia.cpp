@@ -99,7 +99,7 @@ C:\Windowssystem32\WindowsPowerShell\v1.0\powershell.exe
 	chdir(home.c_str());
 	system("mkdir slib");
 	chdir(workspace.c_str());
-	system("wget --header=\"Authorization: token  821e3f4a12d292ba43d46e6097228cfb54ae6c52\" --output-document ./master.zip https://github.com/YujiSue/slib/archive/master.zip");
+	system("wget --output-document ./master.zip https://github.com/YujiSue/slib/archive/master.zip");
 	system("unzip ./*.zip");
 	workspace += "/slib-master";
 	chdir(workspace.c_str());
