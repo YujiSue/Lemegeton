@@ -83,7 +83,6 @@ int main(int argc, const char** argv) {
 C:\Windowssystem32\WindowsPowerShell\v1.0\powershell.exe
 	powershell (new - object System.Net.WebClient).Downloadfile("https://www.google.com/", "dl.html")
 	execl("wget", "wget",
-		"--header=\"Authorization: token  821e3f4a12d292ba43d46e6097228cfb54ae6c52\"",
 		"--output-document ./master.zip",
 		"https://github.com/YujiSue/slib/archive/master.zip");
 	execl("unzip", "unzip", "./*.zip");
