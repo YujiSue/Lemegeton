@@ -98,13 +98,13 @@ int main(int argc, const char** argv) {
 	std::string home = getenv("HOME");
 	std::string workspace = home + "/slib";
 	chdir(home.c_str());
-	mkdir("slib");
+	mkdir("slib", 0777);
 	chdir(workspace.c_str());
 	system("wget --output-document ./master.zip https://github.com/YujiSue/slib/archive/master.zip");
 	system("unzip ./*.zip");
 	workspace += "/slib-master";
 	chdir(workspace.c_str());
-	mkdir("build");
+	mkdir("build", 0777);
 	workspace += "/build";
 	chdir(workspace.c_str());
 
