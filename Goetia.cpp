@@ -11,7 +11,7 @@ int main(int argc, const char** argv) {
 	//bool lsbrain = false;
 	bool lsscience = false;
 	bool lsbioinfo = false;
-
+	int res = 0;
 	std::string op, cmd;
 	std::vector<std::string> args;
 	++argv;
@@ -74,16 +74,16 @@ int main(int argc, const char** argv) {
 #ifdef MAC_OS
 	std::string home = getenv("HOME");
 	std::string workspace = home + "/slib";
-	chdir(home.c_str());
-	system("mkdir slib");
-	chdir(workspace.c_str());
-	system("curl -Lk -o slib.zip https://github.com/YujiSue/slib/archive/master.zip");
-	system("unzip ./slib.zip");
+	res = chdir(home.c_str());
+	res = system("mkdir slib");
+	res = chdir(workspace.c_str());
+	res = system("curl -Lk -o slib.zip https://github.com/YujiSue/slib/archive/master.zip");
+	res = system("unzip ./slib.zip");
 	workspace += "/slib-master";
-	chdir(workspace.c_str());
-	system("mkdir build");
+	res = chdir(workspace.c_str());
+	res = system("mkdir build");
 	workspace += "/build";
-	chdir(workspace.c_str());
+	res = chdir(workspace.c_str());
 #elif defined(WIN_OS)
 	std::string home = getenv("USERPROFILE") + std::string("\\AppData\\Local");
 	std::string workspace = home + "\\slib\\slib-master";
@@ -97,16 +97,16 @@ int main(int argc, const char** argv) {
 #else
 	std::string home = getenv("HOME");
 	std::string workspace = home + "/slib";
-	chdir(home.c_str());
-	mkdir("slib", 0777);
-	chdir(workspace.c_str());
-	system("wget --output-document ./master.zip https://github.com/YujiSue/slib/archive/master.zip");
-	system("unzip ./*.zip");
+	res = chdir(home.c_str());
+	res = mkdir("slib", 0777);
+	res = chdir(workspace.c_str());
+	res = system("wget --output-document ./master.zip https://github.com/YujiSue/slib/archive/master.zip");
+	res = system("unzip ./*.zip");
 	workspace += "/slib-master";
-	chdir(workspace.c_str());
-	mkdir("build", 0777);
+	res = chdir(workspace.c_str());
+	res = mkdir("build", 0777);
 	workspace += "/build";
-	chdir(workspace.c_str());
+	res = chdir(workspace.c_str());
 
 #ifdef WIN_OS
 	if (lsobj) {
@@ -194,7 +194,7 @@ int main(int argc, const char** argv) {
 		sforeach(LIB_SQLITE_C) cmd += " " + LIB_SQLITE + E_ + ".c";
 		sforeach(CRYPTO_C) cmd += " " + CRYPTO + E_ + ".c";
 		std::cout << cmd << std::endl;
-		system(cmd.c_str());
+		res = system(cmd.c_str());
 		if (shared) {
 			cmd = "g++" + CPP_VERSION + INCLUDE_PATH + PTHREAD_LIB_PATH + SHARED_FLAG +
 				" -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -c";
@@ -205,7 +205,7 @@ int main(int argc, const char** argv) {
 			sforeach(SLIB_SNET_CPP) cmd += " " + SLIB_SNET + E_ + ".cpp";
 			sforeach(SLIB_SMEDIA_CPP) cmd += " " + SLIB_SMEDIA + E_ + ".cpp";
 			std::cout << cmd << std::endl;
-			system(cmd.c_str());
+			res = system(cmd.c_str());
 			cmd = "g++" + CPP_VERSION + CURL_LIB_PATH + " -shared -o libsobj.so";
 			sforeach(LIB_Z_C) cmd += " " + E_ + ".o";
 			sforeach(LIB_TIFF_C) cmd += " " + E_ + ".o";
@@ -221,8 +221,8 @@ int main(int argc, const char** argv) {
 			sforeach(SLIB_SNET_CPP) cmd += " " + E_ + ".o";
 			sforeach(SLIB_SMEDIA_CPP) cmd += " " + E_ + ".o";
 			std::cout << cmd << std::endl;
-			system(cmd.c_str());
-			system("rm -r ./*.o");
+			res = system(cmd.c_str());
+			res = system("rm -r ./*.o");
 		}
 		else {
 			cmd = "gcc -shared -o libshelper.so";
@@ -234,8 +234,8 @@ int main(int argc, const char** argv) {
 			sforeach(LIB_SQLITE_C) cmd += " " + E_ + ".o";
 			sforeach(CRYPTO_C) cmd += " " + E_ + ".o";
 			std::cout << cmd << std::endl;
-			system(cmd.c_str());
-			system("rm -r ./*.o");
+			res = system(cmd.c_str());
+			res = system("rm -r ./*.o");
 			cmd = "g++ " + CPP_VERSION + INCLUDE_PATH + PTHREAD_LIB_PATH +
 				" -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -c";
 			sforeach(SLIB_BASIC_CPP) cmd += " " + SLIB_BASIC + E_ + ".cpp";
@@ -245,9 +245,9 @@ int main(int argc, const char** argv) {
 			sforeach(SLIB_SNET_CPP) cmd += " " + SLIB_SNET + E_ + ".cpp";
 			sforeach(SLIB_SMEDIA_CPP) cmd += " " + SLIB_SMEDIA + E_ + ".cpp";
 			std::cout << cmd << std::endl;
-			system(cmd.c_str());
-			system("ar rcs libsobj.a ./*.o");
-			system("rm -r ./*.o");
+			res = system(cmd.c_str());
+			res = system("ar rcs libsobj.a ./*.o");
+			res = system("rm -r ./*.o");
 		}
 	}
 	if (lsbioinfo) {
@@ -256,21 +256,21 @@ int main(int argc, const char** argv) {
 				" -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -c";
 			sforeach(SLIB_SBI_CPP) cmd += " " + SLIB_SBIOINFO + E_ + ".cpp";
 			std::cout << cmd << std::endl;
-			system(cmd.c_str());
+			res = system(cmd.c_str());
 			cmd = "g++ " + CPP_VERSION + " -shared -o libsbioinfo.so";
 			sforeach(SLIB_SBI_CPP) cmd += " " + E_ + ".o";
 			std::cout << cmd << std::endl;
-			system(cmd.c_str());
-			system("rm -r ./*.o");
+			res = system(cmd.c_str());
+			res = system("rm -r ./*.o");
 		}
 		else {
 			cmd = "g++" + CPP_VERSION + INCLUDE_PATH + PTHREAD_LIB_PATH +
 				" -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -c";
 			sforeach(SLIB_SBI_CPP) cmd += " " + SLIB_SBIOINFO + E_ + ".cpp";
 			std::cout << cmd << std::endl;
-			system(cmd.c_str());
-			system("ar rcs libsbioinfo.a ./*.o");
-			system("rm -r ./*.o");
+			res = system(cmd.c_str());
+			res = system("ar rcs libsbioinfo.a ./*.o");
+			res = system("rm -r ./*.o");
 		}
 	}
 	if (lsapp) {
@@ -279,21 +279,21 @@ int main(int argc, const char** argv) {
 				" -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -c";
 			sforeach(SLIB_SAPP_CPP) cmd += " " + SLIB_SAPP + E_ + ".cpp";
 			std::cout << cmd << std::endl;
-			system(cmd.c_str());
+			res = system(cmd.c_str());
 			cmd = "g++ " + CPP_VERSION + " -shared -o libsapp.so";
 			sforeach(SLIB_SAPP_CPP) cmd += " " + E_ + ".o";
 			std::cout << cmd << std::endl;
-			system(cmd.c_str());
-			system("rm -r ./*.o");
+			res = system(cmd.c_str());
+			res = system("rm -r ./*.o");
 		}
 		else {
 			cmd = "g++" + CPP_VERSION + INCLUDE_PATH + PTHREAD_LIB_PATH +
 				" -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -c";
 			sforeach(SLIB_SAPP_CPP) cmd += " " + SLIB_SAPP + E_ + ".cpp";
 			std::cout << cmd << std::endl;
-			system(cmd.c_str());
-			system("ar rcs libsapp.a ./*.o");
-			system("rm -r ./*.o");
+			res = system(cmd.c_str());
+			res = system("ar rcs libsapp.a ./*.o");
+			res = system("rm -r ./*.o");
 		}
 	}
 	if (lsnapp) {
@@ -302,64 +302,63 @@ int main(int argc, const char** argv) {
 				" -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -c";
 			sforeach(SLIB_SNODEAPP_CPP) cmd += " " + SLIB_SAPP + E_ + ".cpp";
 			std::cout << cmd << std::endl;
-			system(cmd.c_str());
+			res = system(cmd.c_str());
 			cmd = "g++ " + CPP_VERSION + " -shared -o libsnodeapp.so";
 			sforeach(SLIB_SNODEAPP_CPP) cmd += " " + E_ + ".o";
 			std::cout << cmd << std::endl;
-			system(cmd.c_str());
-			system("rm -r ./*.o");
+			res = system(cmd.c_str());
+			res = system("rm -r ./*.o");
 		}
 		else {
 			cmd = "g++" + CPP_VERSION + INCLUDE_PATH + PTHREAD_LIB_PATH +
 				" -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -c";
 			sforeach(SLIB_SNODEAPP_CPP) cmd += " " + SLIB_SAPP + E_ + ".cpp";
 			std::cout << cmd << std::endl;
-			system(cmd.c_str());
-			system("ar rcs libsnodeapp.a ./*.o");
-			system("rm -r ./*.o");
+			res = system(cmd.c_str());
+			res = system("ar rcs libsnodeapp.a ./*.o");
+			res = system("rm -r ./*.o");
 		}
 	}
 
 #endif
-	int res;
 	struct stat buf;
 	res = stat("/usr/local/include/slib", &buf);
 	if (res) {
-		system("mkdir /usr/local/include/slib");
-		system("sudo cp -f ../include/*.h /usr/local/include/slib");
+		res = system("mkdir /usr/local/include/slib");
+		res = system("sudo cp -f ../include/*.h /usr/local/include/slib");
 	}
 	if (lsobj) {
-		system("sudo cp -fr ../include/curl /usr/local/include/slib");
-		system("sudo cp -fr ../include/libjpeg /usr/local/include/slib");
-		system("sudo cp -fr ../include/libpng /usr/local/include/slib");
-		system("sudo cp -fr ../include/libtiff /usr/local/include/slib");
-		system("sudo cp -fr ../include/sbasic /usr/local/include/slib");
-		system("sudo cp -fr ../include/sio /usr/local/include/slib");
-		system("sudo cp -fr ../include/smath /usr/local/include/slib");
-		system("sudo cp -fr ../include/smedia /usr/local/include/slib");
-		system("sudo cp -fr ../include/snet /usr/local/include/slib");
-		system("sudo cp -fr ../include/sobj /usr/local/include/slib");
-		system("sudo cp -fr ../include/sqlite /usr/local/include/slib");
-		system("sudo cp -fr ../include/sutil /usr/local/include/slib");
-		system("sudo cp -fr ../include/zlib /usr/local/include/slib");
-		system("sudo cp -fr ../include/crypto /usr/local/include/slib");
+		res = system("sudo cp -fr ../include/curl /usr/local/include/slib");
+		res = system("sudo cp -fr ../include/libjpeg /usr/local/include/slib");
+		res = system("sudo cp -fr ../include/libpng /usr/local/include/slib");
+		res = system("sudo cp -fr ../include/libtiff /usr/local/include/slib");
+		res = system("sudo cp -fr ../include/sbasic /usr/local/include/slib");
+		res = system("sudo cp -fr ../include/sio /usr/local/include/slib");
+		res = system("sudo cp -fr ../include/smath /usr/local/include/slib");
+		res = system("sudo cp -fr ../include/smedia /usr/local/include/slib");
+		res = system("sudo cp -fr ../include/snet /usr/local/include/slib");
+		res = system("sudo cp -fr ../include/sobj /usr/local/include/slib");
+		res = system("sudo cp -fr ../include/sqlite /usr/local/include/slib");
+		res = system("sudo cp -fr ../include/sutil /usr/local/include/slib");
+		res = system("sudo cp -fr ../include/zlib /usr/local/include/slib");
+		res = system("sudo cp -fr ../include/crypto /usr/local/include/slib");
 	}
 	if (lsapp) {
-		system("sudo cp -fr ../include/sapp /usr/local/include/slib");
+		res = system("sudo cp -fr ../include/sapp /usr/local/include/slib");
 	}
 	if (lsnapp) {
-		system("sudo cp -fr ../include/sapp /usr/local/include/slib");
-		system("sudo cp -fr ../include/node /usr/local/include/slib");
+		res = system("sudo cp -fr ../include/sapp /usr/local/include/slib");
+		res = system("sudo cp -fr ../include/node /usr/local/include/slib");
 	}
 	if (lsbioinfo) {
-		system("sudo cp -fr ../include/sbioinfo /usr/local/include/slib");
+		res = system("sudo cp -fr ../include/sbioinfo /usr/local/include/slib");
 	}
 	if (lsscience) {
-		system("sudo cp -fr ../include/sscience /usr/local/include/slib");
+		res = system("sudo cp -fr ../include/sscience /usr/local/include/slib");
 	}
-	system("sudo cp -f ./* /usr/local/lib");
-	chdir(home.c_str());
-	system("rm -r ./slib");
+	res = system("sudo cp -f ./* /usr/local/lib");
+	res = chdir(home.c_str());
+	res = system("rm -r ./slib");
 
 #endif
 	return 0;
