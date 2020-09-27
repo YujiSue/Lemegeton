@@ -36,7 +36,7 @@ std::vector<std::string> LIB_CURL_C = {
 	
 };
 std::vector<std::string> CRYPTO_C = {
-	"md5"
+	"md5c"
 };
 std::vector<std::string> SLIB_BASIC_CPP = {
 	"char","exception","string","sutf8","time"
