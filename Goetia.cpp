@@ -213,7 +213,7 @@ int main(int argc, const char** argv) {
 			sforeach(LIB_PNG_C) cmd += " " + E_ + ".o";
 			sforeach(LIB_JPEG_C) cmd += " " + E_ + ".o";
 			sforeach(LIB_SQLITE_C) cmd += " " + E_ + ".o";
-			sforeach(CRYPTO) cmd += " " + E_ + ".o";
+			sforeach(CRYPTO_C) cmd += " " + E_ + ".o";
 			sforeach(SLIB_BASIC_CPP) cmd += " " + E_ + ".o";
 			sforeach(SLIB_SOBJ_CPP) cmd += " " + E_ + ".o";
 			sforeach(SLIB_SIO_CPP) cmd += " " + E_ + ".o";
@@ -232,6 +232,7 @@ int main(int argc, const char** argv) {
 			sforeach(LIB_PNG_C) cmd += " " + E_ + ".o";
 			sforeach(LIB_JPEG_C) cmd += " " + E_ + ".o";
 			sforeach(LIB_SQLITE_C) cmd += " " + E_ + ".o";
+			sforeach(CRYPTO_C) cmd += " " + E_ + ".o";
 			std::cout << cmd << std::endl;
 			system(cmd.c_str());
 			system("rm -r ./*.o");
