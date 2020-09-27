@@ -199,6 +199,7 @@ int main(int argc, const char** argv) {
 			cmd = "g++" + CPP_VERSION + INCLUDE_PATH + PTHREAD_LIB_PATH + SHARED_FLAG +
 				" -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -c";
 			sforeach(SLIB_BASIC_CPP) cmd += " " + SLIB_BASIC + E_ + ".cpp";
+			sforeach(SLIB_SMATH_CPP) cmd += " " + SLIB_SMATH + E_ + ".cpp";
 			sforeach(SLIB_SOBJ_CPP) cmd += " " + SLIB_SOBJ + E_ + ".cpp";
 			sforeach(SLIB_SIO_CPP) cmd += " " + SLIB_SIO + E_ + ".cpp";
 			sforeach(SLIB_SUTIL_CPP) cmd += " " + SLIB_SUTIL + E_ + ".cpp";
@@ -215,6 +216,7 @@ int main(int argc, const char** argv) {
 			sforeach(LIB_SQLITE_C) cmd += " " + E_ + ".o";
 			sforeach(CRYPTO_C) cmd += " " + E_ + ".o";
 			sforeach(SLIB_BASIC_CPP) cmd += " " + E_ + ".o";
+			sforeach(SLIB_SMATH_CPP) cmd += " " + E_ + ".o";
 			sforeach(SLIB_SOBJ_CPP) cmd += " " + E_ + ".o";
 			sforeach(SLIB_SIO_CPP) cmd += " " + E_ + ".o";
 			sforeach(SLIB_SUTIL_CPP) cmd += " " + E_ + ".o";
@@ -239,6 +241,7 @@ int main(int argc, const char** argv) {
 			cmd = "g++ " + CPP_VERSION + INCLUDE_PATH + PTHREAD_LIB_PATH +
 				" -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -c";
 			sforeach(SLIB_BASIC_CPP) cmd += " " + SLIB_BASIC + E_ + ".cpp";
+			sforeach(SLIB_SMATH_CPP) cmd += " " + SLIB_SMATH + E_ + ".cpp";
 			sforeach(SLIB_SOBJ_CPP) cmd += " " + SLIB_SOBJ + E_ + ".cpp";
 			sforeach(SLIB_SIO_CPP) cmd += " " + SLIB_SIO + E_ + ".cpp";
 			sforeach(SLIB_SUTIL_CPP) cmd += " " + SLIB_SUTIL + E_ + ".cpp";

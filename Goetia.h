@@ -39,7 +39,10 @@ std::vector<std::string> CRYPTO_C = {
 	"md5c"
 };
 std::vector<std::string> SLIB_BASIC_CPP = {
-	"char","exception","string","sutf8","time"
+	"char","exception","locale","string","sutf8","time"
+};
+std::vector<std::string> SLIB_SMATH_CPP = {
+	"smath"
 };
 std::vector<std::string> SLIB_SOBJ_CPP = {
 	"sarray","scolumn","sdata","sdate","sdictionary",
@@ -94,7 +97,6 @@ std::string PTHREAD_LIB_PATH = " -lpthread";
 std::string CURL_LIB_PATH = " -lcurl";
 std::string SHARED_FLAG = " -fPIC";
 
-std::string LIB_CRYPTO = "../src/3rd/crypto/";
 std::string LIB_CURL = "../src/3rd/curl/";
 std::string LIB_JPEG = "../src/3rd/libjpeg/";
 std::string LIB_PNG = "../src/3rd/libpng/";
@@ -106,6 +108,7 @@ std::string CRYPTO = "../src/3rd/crypto/";
 std::string UNIQUE_LIBTIFF_C = "tif_unix";
 
 std::string SLIB_BASIC = "../src/sbasic/";
+std::string SLIB_SMATH = "../src/smath/";
 std::string SLIB_SOBJ = "../src/sobj/";
 std::string SLIB_SIO = "../src/sio/";
 std::string SLIB_SUTIL = "../src/sutil/";
