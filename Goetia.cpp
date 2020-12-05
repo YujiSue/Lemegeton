@@ -107,7 +107,7 @@ int main(int argc, const char** argv) {
 	res = mkdir("build", 0777);
 	workspace += "/build";
 	res = chdir(workspace.c_str());
-
+#endif
 #ifdef WIN_OS
 	if (lsobj) {
 
@@ -253,29 +253,6 @@ int main(int argc, const char** argv) {
 			res = system("rm -r ./*.o");
 		}
 	}
-	if (lsbioinfo) {
-		if (shared) {
-			cmd = "g++" + CPP_VERSION + INCLUDE_PATH + PTHREAD_LIB_PATH + SHARED_FLAG +
-				" -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -c";
-			sforeach(SLIB_SBI_CPP) cmd += " " + SLIB_SBIOINFO + E_ + ".cpp";
-			std::cout << cmd << std::endl;
-			res = system(cmd.c_str());
-			cmd = "g++ " + CPP_VERSION + " -shared -o libsbioinfo.so";
-			sforeach(SLIB_SBI_CPP) cmd += " " + E_ + ".o";
-			std::cout << cmd << std::endl;
-			res = system(cmd.c_str());
-			res = system("rm -r ./*.o");
-		}
-		else {
-			cmd = "g++" + CPP_VERSION + INCLUDE_PATH + PTHREAD_LIB_PATH +
-				" -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -c";
-			sforeach(SLIB_SBI_CPP) cmd += " " + SLIB_SBIOINFO + E_ + ".cpp";
-			std::cout << cmd << std::endl;
-			res = system(cmd.c_str());
-			res = system("ar rcs libsbioinfo.a ./*.o");
-			res = system("rm -r ./*.o");
-		}
-	}
 	if (lsapp) {
 		if (shared) {
 			cmd = "g++" + CPP_VERSION + INCLUDE_PATH + PTHREAD_LIB_PATH + SHARED_FLAG +
@@ -322,14 +299,36 @@ int main(int argc, const char** argv) {
 			res = system("rm -r ./*.o");
 		}
 	}
-
-#endif
+	if (lsbioinfo) {
+		if (shared) {
+			cmd = "g++" + CPP_VERSION + INCLUDE_PATH + PTHREAD_LIB_PATH + SHARED_FLAG +
+				" -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -c";
+			sforeach(SLIB_SBI_CPP) cmd += " " + SLIB_SBIOINFO + E_ + ".cpp";
+			std::cout << cmd << std::endl;
+			res = system(cmd.c_str());
+			cmd = "g++ " + CPP_VERSION + " -shared -o libsbioinfo.so";
+			sforeach(SLIB_SBI_CPP) cmd += " " + E_ + ".o";
+			std::cout << cmd << std::endl;
+			res = system(cmd.c_str());
+			res = system("rm -r ./*.o");
+		}
+		else {
+			cmd = "g++" + CPP_VERSION + INCLUDE_PATH + PTHREAD_LIB_PATH +
+				" -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -c";
+			sforeach(SLIB_SBI_CPP) cmd += " " + SLIB_SBIOINFO + E_ + ".cpp";
+			std::cout << cmd << std::endl;
+			res = system(cmd.c_str());
+			res = system("ar rcs libsbioinfo.a ./*.o");
+			res = system("rm -r ./*.o");
+		}
+	}
+	
 	struct stat buf;
 	res = stat("/usr/local/include/slib", &buf);
 	if (res) {
 		res = system("mkdir /usr/local/include/slib");
-		res = system("sudo cp -f ../include/*.h /usr/local/include/slib");
 	}
+	res = system("sudo cp -f ../include/*.h /usr/local/include/slib");
 	if (lsobj) {
 		res = system("sudo cp -fr ../include/curl /usr/local/include/slib");
 		res = system("sudo cp -fr ../include/libjpeg /usr/local/include/slib");
@@ -362,7 +361,6 @@ int main(int argc, const char** argv) {
 	res = system("sudo cp -f ./* /usr/local/lib");
 	res = chdir(home.c_str());
 	res = system("rm -r ./slib");
-
 #endif
 	return 0;
 }
