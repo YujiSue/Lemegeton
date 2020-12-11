@@ -326,7 +326,7 @@ int main(int argc, const char** argv) {
 	struct stat buf;
 	res = stat("/usr/local/include/slib", &buf);
 	if (res) {
-		res = system("mkdir /usr/local/include/slib");
+		res = system("sudo mkdir /usr/local/include/slib");
 	}
 	res = system("sudo cp -f ../include/*.h /usr/local/include/slib");
 	if (lsobj) {
