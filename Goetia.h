@@ -45,8 +45,8 @@ std::vector<std::string> SLIB_SMATH_CPP = {
 	"smath"
 };
 std::vector<std::string> SLIB_SOBJ_CPP = {
-	"sarray","scolumn","sdata","sdate","sdictionary",
-	"siter","snumber","sobject","sstring","stable", "stext", "svoid"
+	"sarray","scolumn","sdata","sdate","sdictionary", "siter",
+	"snumber","sobject","srow","sstring","stable", "stext", "svoid"
 };
 std::vector<std::string> SLIB_SIO_CPP = {
 	"sfile","sio"
