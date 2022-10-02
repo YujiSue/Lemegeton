@@ -1,5 +1,22 @@
 #ifndef GOETIA_H
 #define GOETIA_H
+#ifdef __APPLE__
+#if TARGET_OS_MAC
+#define MAC_OS
+#endif
+#elif _WIN64
+#define WIN_OS
+#define WIN64_OS
+#elif _WIN32
+#define WIN_OS
+#define WIN32_OS
+#elif __linux__
+#define LINUX_OS
+#elif __unix__
+#define UNIX_OS
+#else
+#define UNKNOWN_OS
+#endif
 
 #include <string>
 #include <vector>
