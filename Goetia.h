@@ -17,7 +17,7 @@
 #else
 #define UNKNOWN_OS
 #endif
-
+#include <iostream>
 #include <string>
 #include <vector>
 
