@@ -1,7 +1,8 @@
 #ifndef GOETIA_H
 #define GOETIA_H
 
-#include "sconfig.h"
+#include <string>
+#include <vector>
 
 std::vector<std::string> LIB_JPEG_C = {
 	"jcapimin","jcapistd","jccoefct","jccolor","jcdctmgr","jchuff","jcinit",
@@ -78,7 +79,7 @@ std::vector<std::string> SLIB_SBI_CPP = {
 	"svariant","svarlist","svarutil"
 };
 
-#ifdef WIN_OS
+#if defined(_WIN64) || defined(_WIN32)
 std::string INCLUDE_PATH = "C:\\ProgramData\\slib\\include";
 std::string STATIC_LIB_PATH = " C:\\ProgramData\\slib\\lib\\static";
 std::string DYNAMIC_LIB_PATH = " C:\\ProgramData\\slib\\lib\\dynamic";
