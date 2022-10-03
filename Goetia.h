@@ -24,6 +24,7 @@ extern "C" {
 #include <string>
 #include <vector>
 #define sfor(V) for(auto it=(V).begin();it<(V).end();++it)
+#define $E (*it)
 std::vector<std::string> LIB_JPEG_C = {
 	"jcapimin","jcapistd","jccoefct","jccolor","jcdctmgr","jchuff","jcinit",
 	"jcmainct","jcmarker","jcmaster","jcomapi","jcparam","jcphuff","jcprepct",
