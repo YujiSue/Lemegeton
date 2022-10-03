@@ -7,9 +7,15 @@
 #elif _WIN64
 #define WIN_OS
 #define WIN64_OS
+#define chdir _chdir
+#define mkdir _mkdir
+#define rmdir _rmdir
 #elif _WIN32
 #define WIN_OS
 #define WIN32_OS
+#define chdir _chdir
+#define mkdir _mkdir
+#define rmdir _rmdir
 #elif __linux__
 #define LINUX_OS
 #elif __unix__
@@ -19,6 +25,7 @@
 #endif
 extern "C" {
 #include <sys/stat.h>
+#include <unistd.h>
 }
 #include <iostream>
 #include <string>
