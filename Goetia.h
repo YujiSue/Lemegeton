@@ -17,10 +17,13 @@
 #else
 #define UNKNOWN_OS
 #endif
+extern "C" {
+#include <sys/stat.h>
+}
 #include <iostream>
 #include <string>
 #include <vector>
-
+#define sfor(V) for(auto it=(V).begin();it<(V).end();++it)
 std::vector<std::string> LIB_JPEG_C = {
 	"jcapimin","jcapistd","jccoefct","jccolor","jcdctmgr","jchuff","jcinit",
 	"jcmainct","jcmarker","jcmaster","jcomapi","jcparam","jcphuff","jcprepct",
