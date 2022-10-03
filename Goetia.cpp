@@ -118,61 +118,61 @@ int main(int argc, const char** argv) {
 
 			cmd = "gcc" + INCLUDE_PATH + LD_PATH + PTHREAD_LIB_PATH + SHARED_FLAG +
 			" -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -c";
-		sforeach(LIB_Z_C) cmd += " " + LIB_Z + E_ + ".c";
-		sforeach(LIB_TIFF_C) cmd += " " + LIB_TIFF + E_ + ".c";
+		sfor(LIB_Z_C) cmd += " " + LIB_Z + $E + ".c";
+		sfor(LIB_TIFF_C) cmd += " " + LIB_TIFF + $E + ".c";
 		cmd += " " + LIB_TIFF + UNIQUE_LIBTIFF_C + ".c";
-		sforeach(LIB_PNG_C) cmd += " " + LIB_PNG + E_ + ".c";
-		sforeach(LIB_JPEG_C) cmd += " " + LIB_JPEG + E_ + ".c";
-		sforeach(LIB_SQLITE_C) cmd += " " + LIB_SQLITE + E_ + ".c";
+		sfor(LIB_PNG_C) cmd += " " + LIB_PNG + $E + ".c";
+		sfor(LIB_JPEG_C) cmd += " " + LIB_JPEG + $E + ".c";
+		sfor(LIB_SQLITE_C) cmd += " " + LIB_SQLITE + $E + ".c";
 		std::cout << cmd << std::endl;
 		system(cmd.c_str());
 		if (shared) {
 			cmd = "g++" + CPP_VERSION + INCLUDE_PATH + PTHREAD_LIB_PATH + SHARED_FLAG +
 				" -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -c";
-			sforeach(SLIB_BASIC_CPP) cmd += " " + SLIB_BASIC + E_ + ".cpp";
-			sforeach(SLIB_SOBJ_CPP) cmd += " " + SLIB_SOBJ + E_ + ".cpp";
-			sforeach(SLIB_SIO_CPP) cmd += " " + SLIB_SIO + E_ + ".cpp";
-			sforeach(SLIB_SUTIL_CPP) cmd += " " + SLIB_SUTIL + E_ + ".cpp";
-			sforeach(SLIB_SNET_CPP) cmd += " " + SLIB_SNET + E_ + ".cpp";
-			sforeach(SLIB_SMEDIA_CPP) cmd += " " + SLIB_SMEDIA + E_ + ".cpp";
+			sfor(SLIB_BASIC_CPP) cmd += " " + SLIB_BASIC + $E + ".cpp";
+			sfor(SLIB_SOBJ_CPP) cmd += " " + SLIB_SOBJ + $E + ".cpp";
+			sfor(SLIB_SIO_CPP) cmd += " " + SLIB_SIO + $E + ".cpp";
+			sfor(SLIB_SUTIL_CPP) cmd += " " + SLIB_SUTIL + $E + ".cpp";
+			sfor(SLIB_SNET_CPP) cmd += " " + SLIB_SNET + $E + ".cpp";
+			sfor(SLIB_SMEDIA_CPP) cmd += " " + SLIB_SMEDIA + $E + ".cpp";
 			std::cout << cmd << std::endl;
 			system(cmd.c_str());
 			cmd = "g++" + CPP_VERSION + CURL_LIB_PATH + " -shared -o libsobj.so";
-			sforeach(LIB_Z_C) cmd += " " + E_ + ".o";
-			sforeach(LIB_TIFF_C) cmd += " " + E_ + ".o";
+			sfor(LIB_Z_C) cmd += " " + $E + ".o";
+			sfor(LIB_TIFF_C) cmd += " " + $E + ".o";
 			cmd += " " + UNIQUE_LIBTIFF_C + ".o";
-			sforeach(LIB_PNG_C) cmd += " " + E_ + ".o";
-			sforeach(LIB_JPEG_C) cmd += " " + E_ + ".o";
-			sforeach(LIB_SQLITE_C) cmd += " " + E_ + ".o";
-			sforeach(SLIB_BASIC_CPP) cmd += " " + E_ + ".o";
-			sforeach(SLIB_SOBJ_CPP) cmd += " " + E_ + ".o";
-			sforeach(SLIB_SIO_CPP) cmd += " " + E_ + ".o";
-			sforeach(SLIB_SUTIL_CPP) cmd += " " + E_ + ".o";
-			sforeach(SLIB_SNET_CPP) cmd += " " + E_ + ".o";
-			sforeach(SLIB_SMEDIA_CPP) cmd += " " + E_ + ".o";
+			sfor(LIB_PNG_C) cmd += " " + $E + ".o";
+			sfor(LIB_JPEG_C) cmd += " " + $E + ".o";
+			sfor(LIB_SQLITE_C) cmd += " " + $E + ".o";
+			sfor(SLIB_BASIC_CPP) cmd += " " + $E + ".o";
+			sfor(SLIB_SOBJ_CPP) cmd += " " + $E + ".o";
+			sfor(SLIB_SIO_CPP) cmd += " " + $E + ".o";
+			sfor(SLIB_SUTIL_CPP) cmd += " " + $E + ".o";
+			sfor(SLIB_SNET_CPP) cmd += " " + $E + ".o";
+			sfor(SLIB_SMEDIA_CPP) cmd += " " + $E + ".o";
 			std::cout << cmd << std::endl;
 			system(cmd.c_str());
 			system("rm -r ./*.o");
 		}
 		else {
 			cmd = "gcc -shared -o libshelper.so";
-			sforeach(LIB_Z_C) cmd += " " + E_ + ".o";
-			sforeach(LIB_TIFF_C) cmd += " " + E_ + ".o";
+			sfor(LIB_Z_C) cmd += " " + $E + ".o";
+			sfor(LIB_TIFF_C) cmd += " " + $E + ".o";
 			cmd += " " + UNIQUE_LIBTIFF_C + ".o";
-			sforeach(LIB_PNG_C) cmd += " " + E_ + ".o";
-			sforeach(LIB_JPEG_C) cmd += " " + E_ + ".o";
-			sforeach(LIB_SQLITE_C) cmd += " " + E_ + ".o";
+			sfor(LIB_PNG_C) cmd += " " + $E + ".o";
+			sfor(LIB_JPEG_C) cmd += " " + $E + ".o";
+			sfor(LIB_SQLITE_C) cmd += " " + $E + ".o";
 			std::cout << cmd << std::endl;
 			system(cmd.c_str());
 			system("rm -r ./*.o");
 			cmd = "g++ " + CPP_VERSION + INCLUDE_PATH + PTHREAD_LIB_PATH +
 				" -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -c";
-			sforeach(SLIB_BASIC_CPP) cmd += " " + SLIB_BASIC + E_ + ".cpp";
-			sforeach(SLIB_SOBJ_CPP) cmd += " " + SLIB_SOBJ + E_ + ".cpp";
-			sforeach(SLIB_SIO_CPP) cmd += " " + SLIB_SIO + E_ + ".cpp";
-			sforeach(SLIB_SUTIL_CPP) cmd += " " + SLIB_SUTIL + E_ + ".cpp";
-			sforeach(SLIB_SNET_CPP) cmd += " " + SLIB_SNET + E_ + ".cpp";
-			sforeach(SLIB_SMEDIA_CPP) cmd += " " + SLIB_SMEDIA + E_ + ".cpp";
+			sfor(SLIB_BASIC_CPP) cmd += " " + SLIB_BASIC + $E + ".cpp";
+			sfor(SLIB_SOBJ_CPP) cmd += " " + SLIB_SOBJ + $E + ".cpp";
+			sfor(SLIB_SIO_CPP) cmd += " " + SLIB_SIO + $E + ".cpp";
+			sfor(SLIB_SUTIL_CPP) cmd += " " + SLIB_SUTIL + $E + ".cpp";
+			sfor(SLIB_SNET_CPP) cmd += " " + SLIB_SNET + $E + ".cpp";
+			sfor(SLIB_SMEDIA_CPP) cmd += " " + SLIB_SMEDIA + $E + ".cpp";
 			std::cout << cmd << std::endl;
 			system(cmd.c_str());
 			system("ar rcs libsobj.a ./*.o");
@@ -186,67 +186,67 @@ int main(int argc, const char** argv) {
 	if (lsobj) {
 		cmd = "gcc" + INCLUDE_PATH + LD_PATH + PTHREAD_LIB_PATH + SHARED_FLAG +
 			" -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -c";
-		sforeach(LIB_Z_C) cmd += " " + LIB_Z + E_ + ".c";
-		sforeach(LIB_TIFF_C) cmd += " " + LIB_TIFF + E_ + ".c";
+		sfor(LIB_Z_C) cmd += " " + LIB_Z + $E + ".c";
+		sfor(LIB_TIFF_C) cmd += " " + LIB_TIFF + $E + ".c";
 		cmd += " " + LIB_TIFF + UNIQUE_LIBTIFF_C + ".c";
-		sforeach(LIB_PNG_C) cmd += " " + LIB_PNG + E_ + ".c";
-		sforeach(LIB_JPEG_C) cmd += " " + LIB_JPEG + E_ + ".c";
-		sforeach(LIB_SQLITE_C) cmd += " " + LIB_SQLITE + E_ + ".c";
-		sforeach(CRYPTO_C) cmd += " " + CRYPTO + E_ + ".c";
+		sfor(LIB_PNG_C) cmd += " " + LIB_PNG + $E + ".c";
+		sfor(LIB_JPEG_C) cmd += " " + LIB_JPEG + $E + ".c";
+		sfor(LIB_SQLITE_C) cmd += " " + LIB_SQLITE + $E + ".c";
+		sfor(CRYPTO_C) cmd += " " + CRYPTO + $E + ".c";
 		std::cout << cmd << std::endl;
 		res = system(cmd.c_str());
 		if (shared) {
 			cmd = "g++" + CPP_VERSION + INCLUDE_PATH + PTHREAD_LIB_PATH + SHARED_FLAG +
 				" -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -c";
-			sforeach(SLIB_BASIC_CPP) cmd += " " + SLIB_BASIC + E_ + ".cpp";
-			sforeach(SLIB_SMATH_CPP) cmd += " " + SLIB_SMATH + E_ + ".cpp";
-			sforeach(SLIB_SOBJ_CPP) cmd += " " + SLIB_SOBJ + E_ + ".cpp";
-			sforeach(SLIB_SIO_CPP) cmd += " " + SLIB_SIO + E_ + ".cpp";
-			sforeach(SLIB_SUTIL_CPP) cmd += " " + SLIB_SUTIL + E_ + ".cpp";
-			sforeach(SLIB_SNET_CPP) cmd += " " + SLIB_SNET + E_ + ".cpp";
-			sforeach(SLIB_SMEDIA_CPP) cmd += " " + SLIB_SMEDIA + E_ + ".cpp";
+			sfor(SLIB_BASIC_CPP) cmd += " " + SLIB_BASIC + $E + ".cpp";
+			sfor(SLIB_SMATH_CPP) cmd += " " + SLIB_SMATH + $E + ".cpp";
+			sfor(SLIB_SOBJ_CPP) cmd += " " + SLIB_SOBJ + $E + ".cpp";
+			sfor(SLIB_SIO_CPP) cmd += " " + SLIB_SIO + $E + ".cpp";
+			sfor(SLIB_SUTIL_CPP) cmd += " " + SLIB_SUTIL + $E + ".cpp";
+			sfor(SLIB_SNET_CPP) cmd += " " + SLIB_SNET + $E + ".cpp";
+			sfor(SLIB_SMEDIA_CPP) cmd += " " + SLIB_SMEDIA + $E + ".cpp";
 			std::cout << cmd << std::endl;
 			res = system(cmd.c_str());
 			cmd = "g++" + CPP_VERSION + CURL_LIB_PATH + " -shared -o libsobj.so";
-			sforeach(LIB_Z_C) cmd += " " + E_ + ".o";
-			sforeach(LIB_TIFF_C) cmd += " " + E_ + ".o";
+			sfor(LIB_Z_C) cmd += " " + $E + ".o";
+			sfor(LIB_TIFF_C) cmd += " " + $E + ".o";
 			cmd += " " + UNIQUE_LIBTIFF_C + ".o";
-			sforeach(LIB_PNG_C) cmd += " " + E_ + ".o";
-			sforeach(LIB_JPEG_C) cmd += " " + E_ + ".o";
-			sforeach(LIB_SQLITE_C) cmd += " " + E_ + ".o";
-			sforeach(CRYPTO_C) cmd += " " + E_ + ".o";
-			sforeach(SLIB_BASIC_CPP) cmd += " " + E_ + ".o";
-			sforeach(SLIB_SMATH_CPP) cmd += " " + E_ + ".o";
-			sforeach(SLIB_SOBJ_CPP) cmd += " " + E_ + ".o";
-			sforeach(SLIB_SIO_CPP) cmd += " " + E_ + ".o";
-			sforeach(SLIB_SUTIL_CPP) cmd += " " + E_ + ".o";
-			sforeach(SLIB_SNET_CPP) cmd += " " + E_ + ".o";
-			sforeach(SLIB_SMEDIA_CPP) cmd += " " + E_ + ".o";
+			sfor(LIB_PNG_C) cmd += " " + $E + ".o";
+			sfor(LIB_JPEG_C) cmd += " " + $E + ".o";
+			sfor(LIB_SQLITE_C) cmd += " " + $E + ".o";
+			sfor(CRYPTO_C) cmd += " " + $E + ".o";
+			sfor(SLIB_BASIC_CPP) cmd += " " + $E + ".o";
+			sfor(SLIB_SMATH_CPP) cmd += " " + $E + ".o";
+			sfor(SLIB_SOBJ_CPP) cmd += " " + $E + ".o";
+			sfor(SLIB_SIO_CPP) cmd += " " + $E + ".o";
+			sfor(SLIB_SUTIL_CPP) cmd += " " + $E + ".o";
+			sfor(SLIB_SNET_CPP) cmd += " " + $E + ".o";
+			sfor(SLIB_SMEDIA_CPP) cmd += " " + $E + ".o";
 			std::cout << cmd << std::endl;
 			res = system(cmd.c_str());
 			res = system("rm -r ./*.o");
 		}
 		else {
 			cmd = "gcc -shared -o libshelper.so";
-			sforeach(LIB_Z_C) cmd += " " + E_ + ".o";
-			sforeach(LIB_TIFF_C) cmd += " " + E_ + ".o";
+			sfor(LIB_Z_C) cmd += " " + $E + ".o";
+			sfor(LIB_TIFF_C) cmd += " " + $E + ".o";
 			cmd += " " + UNIQUE_LIBTIFF_C + ".o";
-			sforeach(LIB_PNG_C) cmd += " " + E_ + ".o";
-			sforeach(LIB_JPEG_C) cmd += " " + E_ + ".o";
-			sforeach(LIB_SQLITE_C) cmd += " " + E_ + ".o";
-			sforeach(CRYPTO_C) cmd += " " + E_ + ".o";
+			sfor(LIB_PNG_C) cmd += " " + $E + ".o";
+			sfor(LIB_JPEG_C) cmd += " " + $E + ".o";
+			sfor(LIB_SQLITE_C) cmd += " " + $E + ".o";
+			sfor(CRYPTO_C) cmd += " " + $E + ".o";
 			std::cout << cmd << std::endl;
 			res = system(cmd.c_str());
 			res = system("rm -r ./*.o");
 			cmd = "g++ " + CPP_VERSION + INCLUDE_PATH + PTHREAD_LIB_PATH +
 				" -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -c";
-			sforeach(SLIB_BASIC_CPP) cmd += " " + SLIB_BASIC + E_ + ".cpp";
-			sforeach(SLIB_SMATH_CPP) cmd += " " + SLIB_SMATH + E_ + ".cpp";
-			sforeach(SLIB_SOBJ_CPP) cmd += " " + SLIB_SOBJ + E_ + ".cpp";
-			sforeach(SLIB_SIO_CPP) cmd += " " + SLIB_SIO + E_ + ".cpp";
-			sforeach(SLIB_SUTIL_CPP) cmd += " " + SLIB_SUTIL + E_ + ".cpp";
-			sforeach(SLIB_SNET_CPP) cmd += " " + SLIB_SNET + E_ + ".cpp";
-			sforeach(SLIB_SMEDIA_CPP) cmd += " " + SLIB_SMEDIA + E_ + ".cpp";
+			sfor(SLIB_BASIC_CPP) cmd += " " + SLIB_BASIC + $E + ".cpp";
+			sfor(SLIB_SMATH_CPP) cmd += " " + SLIB_SMATH + $E + ".cpp";
+			sfor(SLIB_SOBJ_CPP) cmd += " " + SLIB_SOBJ + $E + ".cpp";
+			sfor(SLIB_SIO_CPP) cmd += " " + SLIB_SIO + $E + ".cpp";
+			sfor(SLIB_SUTIL_CPP) cmd += " " + SLIB_SUTIL + $E + ".cpp";
+			sfor(SLIB_SNET_CPP) cmd += " " + SLIB_SNET + $E + ".cpp";
+			sfor(SLIB_SMEDIA_CPP) cmd += " " + SLIB_SMEDIA + $E + ".cpp";
 			std::cout << cmd << std::endl;
 			res = system(cmd.c_str());
 			res = system("ar rcs libsobj.a ./*.o");
@@ -257,11 +257,11 @@ int main(int argc, const char** argv) {
 		if (shared) {
 			cmd = "g++" + CPP_VERSION + INCLUDE_PATH + PTHREAD_LIB_PATH + SHARED_FLAG +
 				" -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -c";
-			sforeach(SLIB_SAPP_CPP) cmd += " " + SLIB_SAPP + E_ + ".cpp";
+			sfor(SLIB_SAPP_CPP) cmd += " " + SLIB_SAPP + $E + ".cpp";
 			std::cout << cmd << std::endl;
 			res = system(cmd.c_str());
 			cmd = "g++ " + CPP_VERSION + " -shared -o libsapp.so";
-			sforeach(SLIB_SAPP_CPP) cmd += " " + E_ + ".o";
+			sfor(SLIB_SAPP_CPP) cmd += " " + $E + ".o";
 			std::cout << cmd << std::endl;
 			res = system(cmd.c_str());
 			res = system("rm -r ./*.o");
@@ -269,7 +269,7 @@ int main(int argc, const char** argv) {
 		else {
 			cmd = "g++" + CPP_VERSION + INCLUDE_PATH + PTHREAD_LIB_PATH +
 				" -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -c";
-			sforeach(SLIB_SAPP_CPP) cmd += " " + SLIB_SAPP + E_ + ".cpp";
+			sfor(SLIB_SAPP_CPP) cmd += " " + SLIB_SAPP + $E + ".cpp";
 			std::cout << cmd << std::endl;
 			res = system(cmd.c_str());
 			res = system("ar rcs libsapp.a ./*.o");
@@ -280,11 +280,11 @@ int main(int argc, const char** argv) {
 		if (shared) {
 			cmd = "g++" + CPP_VERSION + INCLUDE_PATH + PTHREAD_LIB_PATH + SHARED_FLAG +
 				" -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -c";
-			sforeach(SLIB_SNODEAPP_CPP) cmd += " " + SLIB_SAPP + E_ + ".cpp";
+			sfor(SLIB_SNODEAPP_CPP) cmd += " " + SLIB_SAPP + $E + ".cpp";
 			std::cout << cmd << std::endl;
 			res = system(cmd.c_str());
 			cmd = "g++ " + CPP_VERSION + " -shared -o libsnodeapp.so";
-			sforeach(SLIB_SNODEAPP_CPP) cmd += " " + E_ + ".o";
+			sfor(SLIB_SNODEAPP_CPP) cmd += " " + $E + ".o";
 			std::cout << cmd << std::endl;
 			res = system(cmd.c_str());
 			res = system("rm -r ./*.o");
@@ -292,7 +292,7 @@ int main(int argc, const char** argv) {
 		else {
 			cmd = "g++" + CPP_VERSION + INCLUDE_PATH + PTHREAD_LIB_PATH +
 				" -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -c";
-			sforeach(SLIB_SNODEAPP_CPP) cmd += " " + SLIB_SAPP + E_ + ".cpp";
+			sfor(SLIB_SNODEAPP_CPP) cmd += " " + SLIB_SAPP + $E + ".cpp";
 			std::cout << cmd << std::endl;
 			res = system(cmd.c_str());
 			res = system("ar rcs libsnodeapp.a ./*.o");
@@ -303,11 +303,11 @@ int main(int argc, const char** argv) {
 		if (shared) {
 			cmd = "g++" + CPP_VERSION + INCLUDE_PATH + PTHREAD_LIB_PATH + SHARED_FLAG +
 				" -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -c";
-			sforeach(SLIB_SBI_CPP) cmd += " " + SLIB_SBIOINFO + E_ + ".cpp";
+			sfor(SLIB_SBI_CPP) cmd += " " + SLIB_SBIOINFO + $E + ".cpp";
 			std::cout << cmd << std::endl;
 			res = system(cmd.c_str());
 			cmd = "g++ " + CPP_VERSION + " -shared -o libsbioinfo.so";
-			sforeach(SLIB_SBI_CPP) cmd += " " + E_ + ".o";
+			sfor(SLIB_SBI_CPP) cmd += " " + $E + ".o";
 			std::cout << cmd << std::endl;
 			res = system(cmd.c_str());
 			res = system("rm -r ./*.o");
@@ -315,7 +315,7 @@ int main(int argc, const char** argv) {
 		else {
 			cmd = "g++" + CPP_VERSION + INCLUDE_PATH + PTHREAD_LIB_PATH +
 				" -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -c";
-			sforeach(SLIB_SBI_CPP) cmd += " " + SLIB_SBIOINFO + E_ + ".cpp";
+			sfor(SLIB_SBI_CPP) cmd += " " + SLIB_SBIOINFO + $E + ".cpp";
 			std::cout << cmd << std::endl;
 			res = system(cmd.c_str());
 			res = system("ar rcs libsbioinfo.a ./*.o");
